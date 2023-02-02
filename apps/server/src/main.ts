@@ -1,18 +1,26 @@
 import * as http from 'http';
+import { proxy } from './proxy';
 
 const port = process.env.PORT ? Number(process.env.PORT) : 3001;
 const verbose = true;
 
-http.createServer( 
-    ( request, response ) => {
+const server = http.createServer()
 
-        /* logging */
-        if ( verbose ) console.log( request.url )
+server.on('request', async ( request, response ) => {
 
+    /* logging */
+    if ( verbose ) console.log( request.url )
+
+    if ( request.url === '/' ) {
+        proxy('http://localhost:3002', request, response )
+    }
+    else {
         response.write('Hello world!')
         response.end()
-    },
-)
-.listen(
+    }
+
+} )
+
+server.listen(
     port, () => console.log(`Server started at http://localhost:${port}`)
 )

@@ -14,7 +14,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.send({ message: 'Hello API' });
+  res.send({ message: 'Hello Express (with libs)' });
 });
 
 app.listen(port, () => {
