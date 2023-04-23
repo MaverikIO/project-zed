@@ -11,6 +11,11 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "plugins": [
+      { 
+        "transform": "./src/transformers/log-every-node.ts"
+      }
+    ]
   }
 }

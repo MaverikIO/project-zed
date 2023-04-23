@@ -3,7 +3,12 @@
   "compilerOptions": {
     "module": "commonjs",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true 
+    "emitDecoratorMetadata": true,
+    "plugins": [
+      { 
+        "transform": "./src/transformers/log-every-node.ts"
+      }
+    ]
   },
   "files": [],
   "include": [],
