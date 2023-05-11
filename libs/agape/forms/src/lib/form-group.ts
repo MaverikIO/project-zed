@@ -100,7 +100,13 @@ export class FormGroup {
     }
 
  
+    get valid() {
+        return true
+    }
 
+    get dirty() {
+        return true
+    }
 
 
 }

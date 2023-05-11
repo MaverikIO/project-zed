@@ -8,17 +8,17 @@ import { FormGroup, fb } from "@agape/forms";
 })
 export class AgapeFormsDemoComponent {
     
-    form: FormGroup
+    agForm: FormGroup
 
 
     item = { name: "Foo", age: 26 }
 
     constructor() {
-        this.form = fb.string('name')
+        this.agForm = fb.string('name').number('age')
     }
 
     ngOnInit() {
-        console.log(this.form)
+        console.log(this.agForm)
     }
     submit() {
         console.log(this.item)

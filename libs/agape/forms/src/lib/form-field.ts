@@ -14,9 +14,14 @@ export type FormFieldType = 'string'|'number'
  */
 export class FormField {
     type: string;
+
     name: string;
+
     label: string;
+
     length: number;
+
+    required?: boolean;
 
     constructor( type: FormFieldType, name: string, label?: string, params?: FormFieldParams ) {
         if ( 

@@ -7,6 +7,16 @@
     
     <form #form="ngForm" class="grid grid-cols-1">
 
+        <ng-container *ngFor="let field of agForm.fields">
+            <ng-container 
+            [ngTemplateOutlet]="stringInput"
+            [ngTemplateOutletContext]="{field: field, item: item}">
+
+            </ng-container>
+
+
+        </ng-container>
+
         <mat-form-field>
             <label>Name</label>
             <input matInput name="name" required="true" [(ngModel)]="item.name">
@@ -23,8 +33,8 @@
         <button 
         id="submit"
         type="button" 
-        [disabled]="! form.valid || ! form.dirty"
-        [class.disabled]="! form.valid || ! form.dirty"
+        [disabled]="! agForm.valid || ! agForm.dirty"
+        [class.disabled]="! agForm.valid || ! agForm.dirty"
         (click)="submit()"
         class="rounded border-2 border-azule bg-slate-100 hover-bg-azule hover:text-white px-8 py-2 text-azule">
             Submit
@@ -32,3 +42,10 @@
     </div>
 
 </div>
+
+<ng-template #stringInput let-field="field" let-item="item">
+    <mat-form-field>
+        <label>{{ field.label }}</label>
+        <input matInput [name]="field.name" required="true" [(ngModel)]="item[field.name]">
+    </mat-form-field>
+</ng-template>
