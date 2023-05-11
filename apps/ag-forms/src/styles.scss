@@ -151,3 +151,11 @@ $candy-app-theme:   mat-light-theme($candy-app-primary, $candy-app-accent, $cand
 .w-400 {
     width: 400px;
 }
+#submit.disabled {
+    border-color: #b2b4b4;
+    color: #b2b4b4;
+
+    &:hover {
+        background-color: transparent;
+    }
+}

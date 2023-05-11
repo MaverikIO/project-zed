@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-
+import { FormGroup, fb } from "@agape/forms";
 
 
 @Component({
@@ -8,4 +8,21 @@ import { Component } from "@angular/core";
 })
 export class AgapeFormsDemoComponent {
     
+    form: FormGroup
+
+
+    item = { name: "Foo", age: 26 }
+
+    constructor() {
+        this.form = fb.string('name')
+    }
+
+    ngOnInit() {
+        console.log(this.form)
+    }
+    submit() {
+        console.log(this.item)
+    }
+
 }
+

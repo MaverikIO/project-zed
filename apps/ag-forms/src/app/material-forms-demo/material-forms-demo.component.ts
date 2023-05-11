@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 
 
 
@@ -8,4 +9,16 @@ import { Component } from "@angular/core";
 })
 export class MaterialFormsDemoComponent {
     
+
+    fb = new FormBuilder()
+
+    form = this.fb.group({
+        name: ['', Validators.required],
+        age: [],
+    })
+
+    submit() {
+        console.log(this.form.value)
+    }
+
 }
