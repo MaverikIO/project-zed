@@ -6,13 +6,16 @@ import { AgapeFormsDemoComponent } from './agape-forms-demo/agape-forms-demo.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { TemplateBasedFormExampleComponent } from './template-based-form-example/template-based-form-example.component';
 
 
 @NgModule({
   declarations: [
     AppComponent, 
     MaterialFormsDemoComponent, 
-    AgapeFormsDemoComponent 
+    AgapeFormsDemoComponent,
+    TemplateBasedFormExampleComponent,
+
   ],
   imports: [
     BrowserModule,
