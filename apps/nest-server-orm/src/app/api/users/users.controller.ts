@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User, UserDetailView } from './user.model'
+import { User, UserDetailView } from 'lib-platform'
 import { Interface } from '@agape/types';
 
 
@@ -16,6 +16,8 @@ export class UsersController {
         const items = await this.service.list()
 
         const deflated = alchemy.deflate(UserDetailView, items)
+
+        deflated.forEach( item => delete item.password )
 
         return deflated
     }
@@ -34,6 +36,8 @@ export class UsersController {
         const item = await this.service.retrieve(id)
 
         const dto = alchemy.deflate(User, item)
+
+        delete dto.password
 
         return dto
     }
