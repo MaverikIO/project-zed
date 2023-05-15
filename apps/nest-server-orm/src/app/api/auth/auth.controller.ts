@@ -9,7 +9,7 @@ import { alchemy } from '@project-zed/lib-alchemy'
 export class AuthController {
   constructor(private readonly service: AuthService) {}
 
-    @Post()
+    @Post('login')
     create( @Body() payload: Interface<Credentials> ) {
 
         const credentails = alchemy.inflate(Credentials, payload)

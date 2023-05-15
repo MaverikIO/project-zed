@@ -21,6 +21,8 @@ export class LoginComponent extends AComponent {
         password: ['', Validators.required]
     })
 
+
+
     submit() {
         const credentials: ICredentials = this.form.value
 

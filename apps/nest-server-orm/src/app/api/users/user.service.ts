@@ -15,9 +15,10 @@ export class UserService {
 
     create( user: Interface<User> ) {
 
+      const password = user.password;
+      user.password = this.encryptPassword(password)
 
-
-        return orm.insert(User, user).exec()
+      return orm.insert(User, user).exec()
     }
 
     retrieve( id: string ) {
@@ -28,8 +29,6 @@ export class UserService {
         const password = user.password;
         delete user.password;
        
-        const userUpdateView: UserUpdateView = user
-
         orm.update(UserUpdateView, id, user).exec()
 
         if ( password !== undefined) {
@@ -45,6 +44,7 @@ export class UserService {
 
     private encryptPassword( password: string ) {
         const salt = bcrypt.genSaltSync(10)
+        console.log(salt)
         const salted = bcrypt.hashSync(password, salt);
         console.log(salted)
         return salted
