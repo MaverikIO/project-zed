@@ -1,14 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { orm } from '@agape/orm';
+import { JwtService } from '@nestjs/jwt';
+import bcrypt from 'bcryptjs';
 
+import { orm } from '@agape/orm';
 import { Interface } from '@agape/types';
+import { Exception } from '@agape/exception';
+
 import { Credentials, User } from 'lib-platform';
 
-import bcrypt from 'bcryptjs';
-import { Exception } from '@agape/exception';
 
 @Injectable()
 export class AuthService {
+
+    constructor( private jwtService: JwtService ) {
+
+    }
     
     async login( credentials: Interface<Credentials> ) {
         
@@ -16,11 +22,18 @@ export class AuthService {
 
         const authenticated = bcrypt.compareSync(credentials.password, user.password)
 
-        if ( authenticated ) console.log("USER AUTHENTICATED")
 
         if ( ! authenticated ) {
             throw new Exception(401)
         }
+
+        const payload = { username: user.username, sub: user.id };
+
+        const response =  {
+          token: await this.jwtService.signAsync(payload),
+        };
+
+        return response
     }
 
 

@@ -65,9 +65,20 @@
             }
         },
         "/auth/login": {
-            "get": {
+            "post": {
                 "summary": "Login",
                 "tags": ["Auth"],
+                "requestBody": {
+                    "description": "Credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Credentials"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Ok",
@@ -477,6 +488,19 @@
     },
     "components": {
         "schemas": {
+            "Credentials": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "username"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "password"
+                    }
+                }
+            },
             "Event": {
                 "type": "object",
                 "properties": {
