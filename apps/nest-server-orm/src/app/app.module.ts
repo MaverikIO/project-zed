@@ -15,8 +15,8 @@ import process from 'process';
 
 import dotenv from 'dotenv'
 dotenv.config({ path: 'apps/_env/events-application/.env' })
-const secret = process.env['JWT_SECRET']
-
+const JWT_SECRET = process.env['JWT_SECRET']
+const JWT_EXPIRATION_LENGTH = process.env['JWT_EXPIRATION_LENGTH']
 
 @Module({
   imports: [
@@ -29,8 +29,8 @@ const secret = process.env['JWT_SECRET']
 
     JwtModule.register({
       global: true,
-      secret,
-      signOptions: { expiresIn: '60s' },
+      secret: JWT_SECRET,
+      signOptions: { expiresIn: JWT_EXPIRATION_LENGTH + 's' },
     }),
 
     SwaggerModule,  // must be last

@@ -7,9 +7,6 @@ import { connectOrm } from './orm';
 
 
 
-
-console.log("==============", process.env['JWT_SECRET'])
-
 async function bootstrap() {
   await connect()
 
