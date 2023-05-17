@@ -12,6 +12,7 @@ import { OrganizationsModule } from "./modules/organizations/organizations.modul
 import { UsersModule } from "./modules/users/users.module";
 import { MatInputModule } from "@angular/material/input";
 import { AuthModule } from "./modules/auth";
+import { AuthorizedGuard } from "./modules/auth/auth.guard";
 
 @NgModule({
     declarations: [ 
@@ -29,6 +30,9 @@ import { AuthModule } from "./modules/auth";
         RouterModule.forChild(adminRoutes),
 
         MatInputModule,
+    ],
+    providers: [
+        AuthorizedGuard
     ]
 })
 export class AdminModule { }

@@ -1,5 +1,5 @@
 import { Exception } from '@agape/exception';
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express'
 import fs from 'fs';
 
@@ -25,7 +25,7 @@ export class SwaggerController {
             const path = match.groups?.path ?? 'index.html'
 
             if ( ! fs.existsSync(`./apps/_swagger/${path}`) ) {
-                throw new Exception(404)
+                throw new NotFoundException()
             }
 
             let content = fs.readFileSync(`./apps/_swagger/${path}`)

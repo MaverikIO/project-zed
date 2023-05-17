@@ -1,10 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
 import { AppModule } from './app/app.module';
 
 import { connect } from './db';
 import { connectOrm } from './orm';
+
+
+
+
+console.log("==============", process.env['JWT_SECRET'])
 
 async function bootstrap() {
   await connect()

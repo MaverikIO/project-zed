@@ -11,7 +11,12 @@ import { UsersModule } from './api/users/users.module';
 import { OrganizationsModule } from './api/organizations/organizations.module';
 import { AuthModule } from './api/auth/auth.module';
 
-const secret = 'SOME LONG RANDOM SECRET'
+import process from 'process';
+
+import dotenv from 'dotenv'
+dotenv.config({ path: 'apps/_env/events-application/.env' })
+const secret = process.env['JWT_SECRET']
+
 
 @Module({
   imports: [

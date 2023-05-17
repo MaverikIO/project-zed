@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, HttpCode, HttpStatus, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Interface } from '@agape/types';
 import { Credentials } from 'lib-platform';
 
 import { alchemy } from '@project-zed/lib-alchemy'
+import { AuthGuard } from './auth.guard';
 
 @Controller('api/auth')
 export class AuthController {
@@ -16,6 +17,14 @@ export class AuthController {
         const credentails = alchemy.inflate(Credentials, payload)
 
         return this.service.login( credentails )
+    }
+
+    @HttpCode(HttpStatus.OK)
+    @Get('profile')
+    @UseGuards(AuthGuard)
+    get( @Request() request ) {
+
+        console.log( request.auth )
     }
 
 

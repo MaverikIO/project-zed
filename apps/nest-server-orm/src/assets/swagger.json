@@ -98,6 +98,29 @@
                 }
             }
         },
+        "/auth/profile": {
+            "get": {
+                "summary": "Profile",
+                "tags": ["Auth"],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "username": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/foo": {
             "get": {
                 "summary": "Foo",
@@ -486,7 +509,16 @@
             }
         }
     },
+    "security": {
+        "BearerAuth": [ ]
+    },
     "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
         "schemas": {
             "Credentials": {
                 "type": "object",
